@@ -270,7 +270,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 				return true;
 			} else if (keyCode == KeyEvent.KEYCODE_SOFT_RIGHT) {
 				// Code to execute when the Soft Key Right is pressed
-				showPopupMenu(findViewById(R.id.btn_options));
+				openMessagingApp(numberField.getText().toString());
 				return true;
 			}
 		}
@@ -357,11 +357,19 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	}
 	
 	private void openMessagingApp(String number) {
-		Intent intent = new Intent(Intent.ACTION_VIEW);
-		intent.setData(Uri.parse("smsto:" + number));
+		if (TextUtils.isEmpty(number) || number == null) {
+			return;
+		}
+
+		Uri uri = Uri.parse("smsto:" + Uri.encode(number));
+		Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+
 		try {
 			startActivity(intent);
-		} catch (Exception e) {}
+		} catch (ActivityNotFoundException e) {
+			// Handle case where messaging app is not installed or supported
+			Toast.makeText(this, "Messaging app not found", Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	private void callNumber(String number) {
