@@ -245,23 +245,34 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
-			Object focusedViewTag = getCurrentFocus().getTag();
-			String number;
-			if (focusedViewTag instanceof LogEntryCache) {
-				LogEntryCache tag = (LogEntryCache) focusedViewTag;
-				number = tag.phoneNumber.getText().toString();
-				if (number.length() == 0) {
-					number = tag.contactName.getText().toString();
+		if (event.getAction() == KeyEvent.ACTION_DOWN) {
+			if (keyCode == KeyEvent.KEYCODE_CALL || keyCode == KeyEvent.KEYCODE_ENTER) {
+				// Code to execute when the Call key or Enter key is pressed
+				Object focusedViewTag = getCurrentFocus().getTag();
+				String number;
+				if (focusedViewTag instanceof LogEntryCache) {
+					LogEntryCache tag = (LogEntryCache) focusedViewTag;
+					number = tag.phoneNumber.getText().toString();
+					if (number.length() == 0) {
+						number = tag.contactName.getText().toString();
+					}
+				} else if (focusedViewTag instanceof ContactsEntryCache) {
+					ContactsEntryCache tag = (ContactsEntryCache) focusedViewTag;
+					number = tag.phoneNumber.getText().toString();
+				} else {
+					number = numberField.getText().toString();
 				}
-			} else if (focusedViewTag instanceof ContactsEntryCache) {
-				ContactsEntryCache tag = (ContactsEntryCache) focusedViewTag;
-				number = tag.phoneNumber.getText().toString();
-			} else {
-				number = numberField.getText().toString(); 
+				callNumber(number);
+				return true;
+			} else if (keyCode == KeyEvent.KEYCODE_SOFT_LEFT) {
+				// Code to execute when the Soft Key Left is pressed
+				createContact(numberField.getText().toString());
+				return true;
+			} else if (keyCode == KeyEvent.KEYCODE_SOFT_RIGHT) {
+				// Code to execute when the Soft Key Right is pressed
+				showPopupMenu(findViewById(R.id.btn_options));
+				return true;
 			}
-			callNumber(number);
-			return true;
 		}
 		return super.onKeyDown(keyCode, event);
 	}
