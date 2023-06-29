@@ -9,7 +9,7 @@
 		android:layout_height="fill_parent"
 		android:layout_alignParentTop="true"
 		android:layout_above="@+id/panel_number_input"
-		android:fastScrollEnabled="true"
+		android:focusable="true"
 	/>
 	<RelativeLayout
 		android:id="@id/panel_number_input"
@@ -19,7 +19,7 @@
 		android:background="?attr/drawablePanel" >
 		<ImageButton
 			android:layout_alignParentLeft="true"
-			android:layout_width="48dp"
+			android:layout_width="0dp"
 			android:layout_height="48dp"
 			android:padding="8dp"
 			android:id="@+id/btn_add_contact"
@@ -27,7 +27,7 @@
 			android:background="?attr/drawableGenericButton" />
 		<ImageButton
 			android:layout_alignParentRight="true"
-			android:layout_width="48dp"
+			android:layout_width="0dp"
 			android:layout_height="48dp"
 			android:padding="8dp"
 			android:id="@+id/btn_remove_number"
@@ -54,7 +54,7 @@
 		android:layout_marginRight="@dimen/numpad_side_margin"
 		android:layout_width="fill_parent"
 		android:layout_gravity="center"
-		android:layout_height="wrap_content"
+		android:layout_height="0dp"
 		android:layout_above="@+id/panel_bottom"
 		android:stretchColumns="*" >
 		<TableRow
@@ -135,14 +135,14 @@
 	<RelativeLayout
 		android:id="@id/panel_bottom"
 		android:layout_width="fill_parent"
-		android:layout_height="64dp"
+		android:layout_height="0dp"
 		android:layout_alignParentBottom="true"
 		android:background="?attr/drawablePanel"
 		>
 		<ImageButton
 			android:id="@+id/btn_toggle_numpad"
 			android:layout_width="64dp"
-			android:layout_height="64dp"
+			android:layout_height="0dp"
 			android:layout_gravity="center_vertical"
 			android:layout_alignParentLeft="true"
 			android:padding="16dp"
@@ -152,7 +152,7 @@
 		<ImageButton
 			android:id="@+id/btn_options"
 			android:layout_width="64dp"
-			android:layout_height="64dp"
+			android:layout_height="0dp"
 			android:layout_gravity="center_vertical"
 			android:layout_alignParentRight="true"
 			android:padding="16dp"
@@ -170,7 +170,7 @@
 			<ImageButton
 				android:id="@+id/btn_call"
 				android:layout_width="0dp"
-				android:layout_height="40dp"
+				android:layout_height="0dp"
 				android:layout_toLeftOf="@id/btn_options"
 				android:layout_toRightOf="@+id/btn_toggle_numpad"
 				android:layout_margin="12dp"
