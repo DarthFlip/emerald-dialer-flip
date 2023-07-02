@@ -33,7 +33,7 @@
 			android:src="?attr/drawableBackspace"
 			android:background="?attr/drawableGenericButton" />
 		<EditText
-			android:textSize="22sp"
+			android:textSize="42sp"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_toRightOf="@id/btn_add_contact"
@@ -42,9 +42,9 @@
 			android:inputType="phone"
 			android:textStyle="bold"
 			android:textIsSelectable="true"
-			android:layout_marginTop="8dp"
+			android:layout_marginStart="8dp"
 			android:background="@android:color/transparent"
-			android:gravity="center"
+			android:gravity="start"
 			/>
 	</RelativeLayout>
 	<TableLayout
