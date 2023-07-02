@@ -111,7 +111,7 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 		parseIntent(getIntent());
 		telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
 		setButtonListeners();
-		numberField.setCursorVisible(false);
+		numberField.setCursorVisible(true);
 		numberField.requestFocus();
 		numberField.addTextChangedListener(this);
 		list = (ListView) findViewById(R.id.log_entries_list);
@@ -246,7 +246,26 @@ public class DialerActivity extends Activity implements View.OnClickListener, Vi
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (event.getAction() == KeyEvent.ACTION_DOWN) {
-			if (keyCode == KeyEvent.KEYCODE_CALL || keyCode == KeyEvent.KEYCODE_ENTER) {
+			if ((keyCode >= KeyEvent.KEYCODE_0 && keyCode <= KeyEvent.KEYCODE_9) ||
+					keyCode == KeyEvent.KEYCODE_STAR ||
+					keyCode == KeyEvent.KEYCODE_POUND) {
+				// Code to execute when a number key, '*', or '#' is pressed
+				String input;
+				if (keyCode >= KeyEvent.KEYCODE_0 && keyCode <= KeyEvent.KEYCODE_9) {
+					input = String.valueOf(keyCode - KeyEvent.KEYCODE_0);
+				} else if (keyCode == KeyEvent.KEYCODE_STAR) {
+					input = "*";
+				} else {
+					input = "#";
+				}
+
+				// Code to write the input into the input text field
+				EditText numberField = findViewById(R.id.number_field); // Replace 'numberField' with the actual ID of your input field
+				numberField.append(input);
+
+				return true;
+			
+			} else if (keyCode == KeyEvent.KEYCODE_CALL || keyCode == KeyEvent.KEYCODE_ENTER) {
 				// Code to execute when the Call key or Enter key is pressed
 				Object focusedViewTag = getCurrentFocus().getTag();
 				String number;
