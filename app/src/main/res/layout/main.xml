@@ -7,15 +7,14 @@
 		android:id="@+id/log_entries_list"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
-		android:layout_alignParentTop="true"
-		android:layout_above="@+id/panel_number_input"
+		android:layout_below="@+id/panel_number_input"
 		android:focusable="true"
 	/>
 	<RelativeLayout
 		android:id="@id/panel_number_input"
 		android:layout_width="fill_parent"
 		android:layout_height="48dp"
-		android:layout_above="@+id/numpad"
+		android:layout_alignParentTop="true"
 		android:background="?attr/drawablePanel" >
 		<ImageButton
 			android:layout_alignParentLeft="true"
@@ -49,7 +48,7 @@
 			/>
 	</RelativeLayout>
 	<TableLayout
-		android:id="@id/numpad"
+		android:id="@+id/numpad"
 		android:layout_marginLeft="@dimen/numpad_side_margin"
 		android:layout_marginRight="@dimen/numpad_side_margin"
 		android:layout_width="fill_parent"
